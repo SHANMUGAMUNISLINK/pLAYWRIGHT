@@ -1,0 +1,44 @@
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="7.9756339999999994">
+<testsuite name="orange.spec.ts" timestamp="2023-09-13T10:35:25.090Z" hostname="chromium" tests="1" failures="1" skipped="0" time="7.078" errors="0">
+<testcase name="get by list" classname="orange.spec.ts" time="7.078">
+<failure message="orange.spec.ts:31:7 get by list" type="FAILURE">
+<![CDATA[  [chromium] › orange.spec.ts:31:7 › get by list ───────────────────────────────────────────────────
+
+    Error: Timed out 5000ms waiting for expect(received).toHaveCount(expected) // deep equality
+
+    Expected: 7
+    Received: 1
+    Call log:
+      - expect.toHaveCount with timeout 5000ms
+      - waiting for getByLabel('Open Menu')
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+      -   locator resolved to 1 element
+      -   unexpected value "1"
+
+
+      31 |   test('get by list', async({page})=>{
+      32 |     await page.goto('https://www.amazon.in/');
+    > 33 |     await expect(page.getByLabel('Open Menu')).toHaveCount(7);
+         |                                                ^
+      34 |   })
+      35 |
+
+        at d:\node_project\Playwright\,\orange.spec.ts:33:48
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>
