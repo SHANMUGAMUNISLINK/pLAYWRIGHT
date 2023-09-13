@@ -11,8 +11,6 @@
 
  test('click login button', async({page})=>{
  await page.goto("/");
- await page.getByPlaceholder('Username').fill('admin')
-  await page.getByPlaceholder('Password').fill('admin123');
  await page.locator('.orangehrm-login-button').click();
  page.waitForTimeout(2000)
  await page.screenshot({path: 'login.png'})
