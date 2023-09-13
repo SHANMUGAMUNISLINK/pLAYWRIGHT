@@ -27,9 +27,3 @@
 
  
 
-// test('Get by' ,({page})=>{
-     
-//      page.goto("/");
-    
-
-// })
