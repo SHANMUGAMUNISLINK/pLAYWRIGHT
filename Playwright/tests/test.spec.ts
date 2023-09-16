@@ -11,13 +11,19 @@
 
  test('click login button', async({page})=>{
  await page.goto("/");
- await page.locator('.orangehrm-login-button').click();
- page.waitForTimeout(2000)
+ await page.getByPlaceholder('Username').fill('admin')
+ await page.getByPlaceholder('Password').fill('admin123');
+ await page.getByRole('button', { name: 'Login' }).click();
+ page.waitForTimeout(4000)
  await page.screenshot({path: 'login.png'})
 })
 
  test('dash board',async ({page})=>{
- await page.goto("/web/index.php/dashboard/index"); 
+ await page.goto("/web/index.php/dashboard/index");
+ await page.getByPlaceholder('Username').fill('admin')
+ await page.getByPlaceholder('Password').fill('admin123');
+ await page.locator('.orangehrm-login-button').click();
+ page.waitForTimeout(4000) 
  await page.locator('li:nth-of-type(1) > .oxd-main-menu-item').click();
  await page.waitForTimeout(2000)
  await page.screenshot({path: 'dashb.png'})   
