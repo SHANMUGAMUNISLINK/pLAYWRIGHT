@@ -1,6 +1,7 @@
+dotenv.config();
 import { test, expect } from '@playwright/test';
 import puppeteer from 'puppeteer';
-
+import dotenv from 'dotenv';
 test('Login to rcm', async ({ browser }) => {
   // const pupp = await puppeteer.launch({headless: false});
   // const pup = await pupp.newPage();
@@ -12,7 +13,7 @@ test('Login to rcm', async ({ browser }) => {
   await page.goto('https://beta.unislink.com/rcm/', {waitUntil: 'load'});
   //login setup
   // await page.getByRole('button', { name: 'LOGIN WITH AD' }).click();
-  // await page.locator('[type="email"]').fill('shanmugarajeshwaran.m@unislink.com');
+   await page.locator('[type="email"]').fill(process.env.USERNAME);
   // await page.getByRole('button', { name: 'Next' }).click();
   // await page.getByPlaceholder('Password').fill('Dur57272');
   // await page.getByRole('button', { name: 'Sign in' }).click();
