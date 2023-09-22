@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+require('dotenv').config();
+export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/user.json');
+import path from 'path';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -57,7 +60,7 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
+     
   //  {
     //  name: 'firefox',
      // use: { ...devices['Desktop Firefox'] },
