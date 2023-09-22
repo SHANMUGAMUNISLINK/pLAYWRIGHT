@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test",
+    "test": " npx playwright test",
     "start": "node tests/Rcm-beta.spec.ts/Rcm.spec.ts"
   },
   "keywords": [],
