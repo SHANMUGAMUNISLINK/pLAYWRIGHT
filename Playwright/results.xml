@@ -1,24 +1,2 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="30.977007999999998">
-<testsuite name="Rcm.spec.ts" timestamp="2023-09-15T05:23:53.728Z" hostname="chromium" tests="1" failures="1" skipped="0" time="30.013" errors="0">
-<testcase name="Login to rcm" classname="Rcm.spec.ts" time="30.013">
-<failure message="Rcm.spec.ts:3:5 Login to rcm" type="FAILURE">
-<![CDATA[  [chromium] › Rcm.spec.ts:3:5 › Login to rcm ──────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded.
-
-    Error: page.waitForLoadState: Navigation failed because page was closed!
-
-       9 |   await page.getByRole('button', { name: 'Sign in' }).click();
-      10 |   await page.getByRole('button', { name: 'Yes' }).click();
-    > 11 |   await page.waitForLoadState('load');
-         |              ^
-      12 |   await page.getByRole('link', { name: 'Enterprise Reporting' }).click();
-      13 |   const link = await page.getByRole('link', { name: 'Automation' });
-      14 |   expect(await link.isVisible()).toBe(true);
-
-        at d:\node_project\Playwright\,\Rcm.spec.ts:11:14
-]]>
-</failure>
-</testcase>
-</testsuite>
+<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="0.0017800000000002">
 </testsuites>
