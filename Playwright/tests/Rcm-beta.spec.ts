@@ -1,4 +1,6 @@
-dotenv.config();
+dotenv.config({
+    path:'.env'
+});
 import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
 
