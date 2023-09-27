@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
-require('dotenv').config();
-export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/user.json');
-import path from 'path';
+// require('dotenv').config();
+// export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/user.json');
+// import path from 'path';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -14,13 +14,13 @@ import path from 'path';
  */
 export default defineConfig({
 
-  webServer: {
-    command: 'npm run start',
-    url: 'https://auth.modiohealth.com',
-    reuseExistingServer: !process.env.CI,
-    stdout: 'ignore',
-    stderr: 'pipe',
-  },
+  // webServer: {
+  //   command: 'npm run start',
+  //   url: 'https://auth.modiohealth.com',
+  //   reuseExistingServer: !process.env.CI,
+  //   stdout: 'ignore',
+  //   stderr: 'pipe',
+  // },
  
 
   //reporter: [['json', { outputFile: 'results.json' }]],
@@ -29,11 +29,11 @@ export default defineConfig({
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  //forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  //retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  //workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
  // reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -56,15 +56,15 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
      
-  //  {
-    //  name: 'firefox',
-     // use: { ...devices['Desktop Firefox'] },
-    //},
+   {
+     name: 'firefox',
+     use: { ...devices['Desktop Firefox'] },
+    },
 
     //{
      // name: 'webkit',

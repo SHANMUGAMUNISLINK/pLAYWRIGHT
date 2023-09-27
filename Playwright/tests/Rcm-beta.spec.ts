@@ -1,48 +1,42 @@
-dotenv.config({
-    path:'.env'
-});
-import { test, expect } from '@playwright/test';
-import dotenv from 'dotenv';
-
-
+import { test, expect,} from '@playwright/test';
+import { chromium, firefox, webkit } from 'playwright';
 test('login to beta', async ({ page }) => {
-  
-  await page.goto('https://beta.unislink.com/rpt/',{waitUntil: 'load'});
-
+   const browser = await firefox.launch();
+  page.goto('https://beta.unislink.com/rpt/',{waitUntil: 'load'});
  
   await page.getByRole('link', { name: 'Unislink AD' }).click();
-
-  await page.locator('[type="email"]').fill('shanmugarajeshwaran.m@unislink.com');
-  //await page.locator('[type="email"]').fill(process.env.USERNAME);
-//    await page.waitForTimeout(4000);
- 
+  await page.waitForLoadState('load');
+  await page.getByPlaceholder('Email, phone, or Skype').click();
+  await page.getByPlaceholder('Email, phone, or Skype').fill('shanmugarajeshwaran.m@unislink.com');
   await page.getByRole('button', { name: 'Next' }).click();
-  
+  await page.getByPlaceholder('Password').click();
   await page.getByPlaceholder('Password').fill('Dur57272');
- // await page.getByPlaceholder('Password').fill(process.env.PASSWORD);
- await page.getByRole('button', { name: 'Sign in' }).click();
- await page.getByRole('button', { name: 'Yes' }).click();
- await page.locator('.icon-notebook').click();
- const locator = await page.locator('.font-12.p-2.text-dark.text-right > i'); 
-const tex = await locator.textContent(); 
-console.log("it show date:"+tex);
+  await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.getByRole('button', { name: 'Yes' }).click();
+  await page.waitForLoadState('load');
+  //hospital name
+  const ref = await page.locator("span[title='Apex Internal Medicine PC']").textContent();
+  console.log("Name: "+ref);
+ //date
+  const date = await page.locator('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > i > date-display > span').textContent();
+  console.log("Date: "+date); 
+  await page.waitForTimeout(3000);
+ //select new practic
+   await page.locator('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(5) > a > em').click();
+   
+  
+   await page.locator('.text-primary').click({timeout:2000});
+ //dropdown 
+   await page.getByRole('dialog').locator('span').nth(3).click();
+  //newpratic
+  await page.getByText('Alsham Endocrinology').click();
+  await page.getByRole('button', { name: 'Switch Practice' }).click();
+  await page.waitForTimeout(5000);
+  //asy
+  const asy = await page.locator('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > div > span').textContent();
+  console.log(`Name: ${asy}`);
 
-const string = await page.locator('.ng-star-inserted.pointer.text-primary');
-await string.click();
-const pass= await string.textContent();
-console.log("it show hospital name:"+pass);
- 
-//await page.locator('.ng-arrow-wrapper').click();
-//await page.locator('.ng-arrow-wrapper').click();
-// const drop =await
-//await page.locator('div[role="combobox"] > input[type="text"]').click();
-// await drop.click();
-//await drop.selectOption({value:'LAKESHORE OPEN MRI'})
 
-await page.locator('.ng-arrow-wrapper').selectOption({ index: 2 });
-//  await page.locator('.ng-arrow-wrapper').click();
-//  await page.locator('.ng-arrow-wrapper').selectText()
- await page.waitForTimeout(6000);
 
- 
 });
+ 
