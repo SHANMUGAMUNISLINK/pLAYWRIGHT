@@ -27,7 +27,7 @@ test('login to beta', async ({ page }) => {
   
    await page.locator('.text-primary').click({timeout:2000});
  //dropdown 
-   await page.getByRole('dialog').locator('span').nth(3).click();
+ await page.getByRole('dialog').locator('span').nth(3).click();
   //newpratic
   await page.getByText('Alsham Endocrinology').click();
   await page.getByRole('button', { name: 'Switch Practice' }).click();

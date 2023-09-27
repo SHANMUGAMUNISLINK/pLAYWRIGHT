@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": " npx playwright test",
-    "start": "node tests/Rcm-beta.spec.ts/Rcm.spec.ts"
+    "start": "node tests/Rcm-beta.spec.ts/Rcm.spec.ts/New.spec.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.38.1",
+    "@types/jest": "^29.5.5",
     "@types/puppeteer": "^7.0.4"
   },
   "dependencies": {
