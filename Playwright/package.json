@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build":"tsc",
     "test": " npx playwright test",
     "start": "node tests/Rcm-beta.spec.ts/Rcm.spec.ts/New.spec.ts"
   },
