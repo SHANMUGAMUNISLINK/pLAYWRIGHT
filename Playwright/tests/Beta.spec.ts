@@ -10,7 +10,7 @@ async function loginAndFetchPracticeElementName(): Promise<void> {
     await page.waitForLoadState('load');
     await page.getByPlaceholder('Email, phone, or Skype').fill('shanmugarajeshwaran.m@unislink.com');
     await page.getByRole('button', { name: 'Next' }).click();
-    await page.getByPlaceholder('Password').fill('Dur57272');
+    await page.getByPlaceholder('Password').fill('Shanmugam@1997');
     await page.getByRole('button', { name: 'Sign in' }).click();
     await page.getByRole('button', { name: 'Yes' }).click();
     await page.waitForLoadState('load');
@@ -30,7 +30,7 @@ async function loginAndFetchPracticeElementName(): Promise<void> {
     // Dropdown selection
     await page.locator('body > app-root > app-layout > div > app-offsidebar > tabset > div > tab > div.col-12.list-group.text-center.offsider-pos-center > h5:nth-child(4) > span.text-primary.pointer.ng-star-inserted').click();
     await page.getByRole('combobox').click();
-  await page.click('.scrollable-content > div:nth-of-type(6)');
+  // await page.click('.scrollable-content > div:nth-of-type(6)');
     await page.getByRole('button', { name: 'Switch Practice' }).click();
     await page.waitForTimeout(5000);
     await page.waitForSelector('#UnislinkAD');
