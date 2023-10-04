@@ -34,7 +34,6 @@ import { chromium, Browser, Page } from 'playwright';
     console.log('Practice DATE:', date);
     await page.click('.ng-input');
   }
-
   await loginWithInput('Buckeye Medical Center'); 
   await browser.close();
 })();
