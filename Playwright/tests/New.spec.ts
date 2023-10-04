@@ -24,11 +24,13 @@ async function loginAndFetchPracticeElementName(): Promise<void> {
     console.log('Hospital Name:', hospitalname);
     console.log('DATE:', date)
     // Perform additional actions as needed
-    await page.click('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(5) > a', { timeout: 2000 });
+    await page.locator('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(5)').click();
     // Dropdown selection
     await page.locator('body > app-root > app-layout > div > app-offsidebar > tabset > div > tab > div.col-12.list-group.text-center.offsider-pos-center > h5:nth-child(4) > span.text-primary.pointer.ng-star-inserted').click();
-    await page.getByRole('combobox').click();
-  await page.click('.scrollable-content > div:nth-of-type(6)');
+   
+    await page.locator('.ng-input').click();
+    await page.getByRole('option', { name: 'Buckeye Medical Center' }).click();
+   
     await page.getByRole('button', { name: 'Switch Practice' }).click();
     await page.waitForTimeout(5000);
     await page.waitForSelector('#UnislinkAD');

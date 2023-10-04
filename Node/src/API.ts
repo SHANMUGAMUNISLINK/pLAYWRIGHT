@@ -7,15 +7,20 @@ const port = 3001;
 
 app.get('/get-element-text', async (req: Request, res: Response) => {
   try {
-    const elementText = await loginAndFetchPracticeElementName();
-    res.status(200).json({ elementText });
+    const { hospitalname, date } = req.query;
+    if (!hospitalname || !date) {
+      return res.status(400).json({ error: 'Missing hospitalname or date in the query parameters' });
+    }
+
+    const { hospitalnameText, dateText } = await loginAndFetchPracticeElementName();
+    res.status(200).json({ hospitalname: hospitalnameText, date: dateText });
   } catch (error) {
     console.error('Main Error:', error);
     res.status(500).json({ error: 'An error occurred while executing the Playwright script' });
   }
 });
 
-async function loginAndFetchPracticeElementName(): Promise<string> {
+async function loginAndFetchPracticeElementName(): Promise<{ hospitalnameText: string, dateText: string }> {
   const browser: Browser = await chromium.launch({ channel: 'chrome' });
   const page: Page = await browser.newPage();
   try {
@@ -29,19 +34,25 @@ async function loginAndFetchPracticeElementName(): Promise<string> {
     await page.getByRole('button', { name: 'Yes' }).click();
     await page.waitForLoadState('load');
     await page.waitForSelector('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > div > span');
-    // Get the practice element's text
-   const hospitalname = await page.textContent('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > div > span');
-    // Perform additional actions as needed
-    const date = await page.textContent('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > i > date-display > span'); // Add your second selector here
-    if (hospitalname === null) {
-      throw new Error('Practice element not found');
+    
+    const hospitalnameText = await page.textContent('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > div > span');
+    const dateText = await page.textContent('body > app-root > app-layout > div > app-header > nav > ul:nth-child(4) > li:nth-child(1) > div > i > date-display > span');
+
+    if (hospitalnameText === null) {
+      throw new Error('Hospital name not found');
     }
-    console.log('Hospital Name:', hospitalname);
-    console.log('DATE:', date)
-    return hospitalname || 'Element not found'; // Return the element text or a default message
+
+    if (dateText === null) {
+      throw new Error('Date not found');
+    }
+
+    console.log('Hospital Name:', hospitalnameText);
+    console.log('DATE:', dateText);
+
+    return { hospitalnameText, dateText };
   } catch (error) {
     console.error('Error:', error);
-    throw error; // Rethrow the error to handle it in the route
+    throw error; 
   } finally {
     await browser.close();
   }
@@ -51,7 +62,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-
-
-
-
+///node build/api.js

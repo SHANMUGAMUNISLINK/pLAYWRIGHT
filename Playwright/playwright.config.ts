@@ -43,8 +43,8 @@ export default defineConfig({
  
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-    baseURL: "https://opensource-demo.orangehrmlive.com",
-     headless: true,
+      baseURL:'https://beta.unislink.com/rpt/',
+     headless: false,
      video: {
       mode: 'on-first-retry',
       size: { width: 640, height: 480 },
